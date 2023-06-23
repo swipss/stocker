@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  // add hostname
+  images: {
+    domains: ["cdn.financialmodelingprep.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
