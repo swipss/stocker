@@ -3,6 +3,7 @@ import { Article as ArticleType } from "./NewsList";
 import Link from "next/link";
 import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
+import Ticker from "./Ticker";
 
 export default function Article({ article }: { article: ArticleType }) {
   const ticker = article.tickers.split(":")[1];
@@ -15,10 +16,22 @@ export default function Article({ article }: { article: ArticleType }) {
   };
 
   const content = convertHtmlToText(article.content);
+  const convertedText = article.title
+    .toLowerCase()
+    .replace(/\s/g, "-") // Remove spaces
+    .replace(/[^a-zA-Z0-9-]/g, "-") // Replace special characters with hyphens
+    .replace(/--+/g, "-") // Remove consecutive hyphens
+    .replace(/^-|-$/g, ""); // Remove hyphens from the beginning or end of the string
 
   return (
     <li>
-      <Link href="#" className="flex w-full gap-4 pr-4 bg-white rounded-lg ">
+      <Link
+        href={`/market-news/${convertedText}?title=${article.title}`}
+        as={{
+          pathname: `/market-news/${convertedText}`,
+        }}
+        className="flex w-full gap-4 pr-4 bg-white rounded-lg group"
+      >
         <Image
           src={article.image}
           alt={article.title}
@@ -27,14 +40,12 @@ export default function Article({ article }: { article: ArticleType }) {
           className="rounded-lg"
         />
         <div className="flex flex-col justify-between">
-          <h3 className="text-xl font-medium text-slate-900">
+          <h3 className="text-xl font-medium text-slate-900 group-hover:text-blue-600">
             {article.title}
           </h3>
-          <p className="text-sm text-slate-500">{content.slice(0, 300)}</p>
+          <p className="text-sm text-slate-500">{content.slice(0, 300)}...</p>
           <div className="flex items-center gap-2">
-            <span className="px-2 text-sm font-medium text-blue-600 bg-blue-200 rounded w-max">
-              {ticker}
-            </span>
+            <Ticker tickers={article.tickers} />
             <div className="w-1.5 h-1.5 bg-gray-300 rounded-full" />
             <span className="text-sm text-slate-500">
               {new Date(article.date).toLocaleDateString()}

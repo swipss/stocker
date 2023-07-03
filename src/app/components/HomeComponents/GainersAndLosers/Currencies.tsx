@@ -10,7 +10,11 @@ interface Currency {
 const endpoint = `https://financialmodelingprep.com/api/v3/fx?apikey=${process.env.API_KEY}`;
 
 export default async function Currencies() {
-  const res = await fetch(endpoint);
+  const res = await fetch(endpoint, {
+    next: {
+      revalidate: 6000,
+    },
+  });
   const data = await res.json();
   // the data returns changes instead of changesPercentage
   // so we need to map it to changesPercentage

@@ -5,8 +5,6 @@ import useDebounce from "../helpers/useDebounce";
 import Link from "next/link";
 import { useOutsideClick } from "../helpers/useOutsideClick";
 
-const searchLimit = 5;
-
 export default function Search() {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState<any>([]);

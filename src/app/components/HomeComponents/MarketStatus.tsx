@@ -5,7 +5,11 @@ interface MarketStatusProps {
 const endpoint = `https://financialmodelingprep.com/api/v3/is-the-market-open?apikey=${process.env.API_KEY}`;
 
 export default async function MarketStatus() {
-  const res = await fetch(endpoint);
+  const res = await fetch(endpoint, {
+    next: {
+      revalidate: 6000,
+    },
+  });
   const data: MarketStatusProps = await res.json();
   console.log(data?.isTheStockMarketOpen);
   const renderCircleColor = () => {

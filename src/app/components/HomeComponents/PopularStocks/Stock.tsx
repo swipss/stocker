@@ -22,6 +22,7 @@ const Stock: FC<any> = ({ stock }) => {
   const todaysPrice = stock.historical?.[0]?.close?.toFixed(2);
   const todaysChange = stock.historical?.[0]?.change?.toFixed(2);
   const todaysChangePercent = stock.historical?.[0]?.changePercent?.toFixed(2);
+  console.log(stock.symbol, stock.historical?.[0]?.close);
   return (
     <li
       key={stock.name}

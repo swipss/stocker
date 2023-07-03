@@ -13,11 +13,11 @@ import MarketStatus from "./components/HomeComponents/MarketStatus";
 
 export default async function Home() {
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen p-4 bg-white">
-      <div className="z-10 items-center justify-between max-w-6xl gap-1 ">
+    <main className="flex flex-col items-center justify-between min-h-screen p-4 pt-32 bg-white">
+      <div className="z-10 items-center justify-between w-full max-w-6xl gap-1">
         <MarketStatus />
         <PopularStocks />
-        <div className="flex w-full mt-10 divide-x">
+        <div className="flex flex-col-reverse w-full lg:mt-10 lg:divide-x lg:flex-row">
           <NewsList />
           <div>
             <Gainers />

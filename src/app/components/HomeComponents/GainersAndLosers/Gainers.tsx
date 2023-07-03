@@ -1,5 +1,3 @@
-import Link from "next/link";
-import StockRow from "./StockRow";
 import StockBox from "./StockBox";
 
 interface Gainer {
@@ -13,8 +11,13 @@ interface Gainer {
 const endpoint = `https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${process.env.API_KEY}`;
 
 export default async function Gainers() {
-  const res = await fetch(endpoint);
+  const res = await fetch(endpoint, {
+    next: {
+      revalidate: 6000,
+    },
+  });
   const data: Gainer[] = await res.json();
+  console.log(data);
   const topGainers = data?.slice(0, 5);
 
   return <StockBox title="Gainers" stocks={topGainers} />;

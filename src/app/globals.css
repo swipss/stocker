@@ -25,3 +25,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* disable scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+p > a {
+  color: #1374ed;
+}

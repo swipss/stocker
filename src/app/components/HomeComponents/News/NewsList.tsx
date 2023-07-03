@@ -7,6 +7,8 @@ export interface Article {
   image: string;
   tickers: string;
   author: string;
+  site: string;
+  link: string;
 }
 
 interface NewsData {
@@ -14,7 +16,11 @@ interface NewsData {
 }
 const endpoint = `https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=15&apikey=${process.env.API_KEY}`;
 export default async function NewsList() {
-  const res = await fetch(endpoint);
+  const res = await fetch(endpoint, {
+    next: {
+      revalidate: 6000,
+    },
+  });
   const { content: data }: NewsData = await res.json();
   return (
     <div>
