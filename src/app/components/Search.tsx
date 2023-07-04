@@ -62,7 +62,7 @@ export default function Search() {
     <div className="relative">
       <input
         type="text"
-        className="relative w-64 p-2 text-sm border rounded-md shadow text-slate-900 shadow-gray-200 focus:outline-none"
+        className="relative w-full p-2 text-sm border rounded-md shadow lg:w-64 text-slate-900 shadow-gray-200 focus:outline-none"
         placeholder="Search for a stock..."
         value={search}
         onChange={handleTextChange}

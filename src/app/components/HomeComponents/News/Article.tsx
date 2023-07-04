@@ -1,45 +1,44 @@
+"use client";
+
 import Image from "next/image";
 import { Article as ArticleType } from "./NewsList";
 import Link from "next/link";
 import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
 import Ticker from "./Ticker";
+import { sanitize } from "dompurify";
 
 export default function Article({ article }: { article: ArticleType }) {
-  const ticker = article.tickers.split(":")[1];
-
   const convertHtmlToText = (html: any) => {
-    const window = new JSDOM("").window;
-    const purify = DOMPurify(window);
-    const sanitizedHtml = purify.sanitize(html);
+    const sanitizedHtml = sanitize(html);
     return sanitizedHtml.replace(/<[^>]*>?/gm, "");
   };
 
   const content = convertHtmlToText(article.content);
-  const convertedText = article.title
-    .toLowerCase()
+  const convertedText = article?.title
+    ?.toLowerCase()
     .replace(/\s/g, "-") // Remove spaces
     .replace(/[^a-zA-Z0-9-]/g, "-") // Replace special characters with hyphens
     .replace(/--+/g, "-") // Remove consecutive hyphens
     .replace(/^-|-$/g, ""); // Remove hyphens from the beginning or end of the string
 
   return (
-    <li>
+    <li className="list-none">
       <Link
         href={`/market-news/${convertedText}?title=${article.title}`}
         as={{
           pathname: `/market-news/${convertedText}`,
         }}
-        className="flex w-full gap-4 pr-4 bg-white rounded-lg group"
+        className="flex flex-col w-full gap-4 pr-4 bg-white rounded-lg group md:flex-row"
       >
         <Image
           src={article.image}
           alt={article.title}
-          width={300}
-          height={300}
-          className="rounded-lg"
+          width={200}
+          height={100}
+          className="object-cover object-center w-full rounded-lg"
         />
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-start gap-4">
           <h3 className="text-xl font-medium text-slate-900 group-hover:text-blue-600">
             {article.title}
           </h3>
@@ -56,4 +55,3 @@ export default function Article({ article }: { article: ArticleType }) {
     </li>
   );
 }
-2;

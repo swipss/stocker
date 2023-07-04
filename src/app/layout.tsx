@@ -1,3 +1,5 @@
+import MarketStatus from "./components/HomeComponents/MarketStatus";
+import PopularStocks from "./components/HomeComponents/PopularStocks/PopularStocks";
 import NavBar from "./components/NavBar";
 import "./globals.css";
 import { Poppins } from "next/font/google";
@@ -19,9 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body className={`bg-white ${poppins.className}`}>
+      <body className={`bg-white  ${poppins.className}`}>
         <NavBar />
-        {children}
+        <div className="max-w-6xl m-auto pt-28">
+          <MarketStatus />
+          <PopularStocks />
+          {children}
+        </div>
       </body>
     </html>
   );

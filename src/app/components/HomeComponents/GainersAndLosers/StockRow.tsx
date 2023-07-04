@@ -24,7 +24,7 @@ export default function StockRow({ stock }: { stock: StockRowProps }) {
     <li key={stock?.symbol}>
       <Link
         href="#"
-        className="grid items-center justify-center w-full grid-cols-3 p-2 transition-all rounded text-neutral-500 hover:bg-gray-100"
+        className="grid items-center justify-center w-full grid-cols-3 ml-4 transition-all rounded lg:ml-0 text-neutral-500 hover:bg-gray-100"
       >
         <h3 className="font-medium uppercase">{stock?.symbol}</h3>
 

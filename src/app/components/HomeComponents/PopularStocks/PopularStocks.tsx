@@ -18,7 +18,7 @@ export default async function PopularStocks() {
   const stocks = await getPopularStocks();
 
   return (
-    <ul className="flex w-full gap-2 overflow-x-scroll lg:overflow-visible">
+    <ul className="flex w-full gap-2 px-4 overflow-x-scroll lg:overflow-visible">
       {stocks?.historicalStockList?.map((stock: any) => (
         <Stock stock={stock} key={stock.name} />
       ))}

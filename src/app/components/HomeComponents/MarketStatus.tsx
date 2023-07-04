@@ -21,7 +21,7 @@ export default async function MarketStatus() {
   };
 
   return (
-    <div className="relative flex items-center gap-2">
+    <div className="relative flex items-center gap-2 pl-4">
       <div className={`w-2 h-2 ${renderCircleColor()} rounded-full z-10`} />
       <p className="text-sm font-semibold text-gray-700">
         {data?.isTheStockMarketOpen

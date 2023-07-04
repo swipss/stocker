@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { title: string } }) {
   console.log(trimmedNews);
 
   return (
-    <div className="p-4 pt-32">
+    <div className="p-4 pt-10">
       <Ticker tickers={article.tickers} />
       <h1 className="my-4 text-4xl font-semibold text-slate-900">
         {article.title}
